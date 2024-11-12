@@ -55,7 +55,7 @@ public:
 	}
 
 
-	virtual void printInfo() {
+	void printInfo() override {
 		std::cout << "Тип:      " << typeid(*this).name() << "\n";
 		std::cout << "Название: " << this->name << "\n";
 		std::cout << "Год:      " << this->year << "\n";
@@ -79,7 +79,7 @@ public:
 		this->bindingType = bindingType;
 	}
 
-	virtual void printInfo() {
+	void printInfo() override {
 		std::cout << "Тип:      " << typeid(*this).name() << "\n";
 		std::cout << "Название: " << this->name << "\n";
 		std::cout << "Год:      " << this->year << "\n";
@@ -103,7 +103,7 @@ public:
 		this->depth = depth;
 	}
 
-	virtual void printInfo() {
+	void printInfo() override {
 		std::cout << "Тип:      " << typeid(*this).name() << "\n";
 		std::cout << "Название: " << this->name << "\n";
 		std::cout << "Год:      " << this->year << "\n";

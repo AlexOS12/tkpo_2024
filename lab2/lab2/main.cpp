@@ -6,8 +6,9 @@
 // Фукнция для чтения изданий а также вывода информации о них
 void read(PrintEdition* printEdition) {
 	printEdition->printInfo();
-	std::cout << "\nСодержимое:\n";
-	std::cout << printEdition->read() << "\n\n";
+	std::cout << "Содержимое:\n";
+	std::cout << printEdition->read() << "\n";
+	std::cout << "\n---------------------------\n\n";
 }
 
 int main() {
