@@ -17,6 +17,12 @@ std::string readFile(std::string path) {
 	return content;
 }
 
+// Здесь можно вычислить хеш статьи
+// https://toolkitbay.com/tkb/tool/FNV-1
+// Алгоритм: FNV-1 64A
+// ВАЖНО! Обязательно загружать файл в кодировке ANSI,
+//		  Предварительно удалив ВСЕ переносы строк
+
 int main() {
 	setlocale(LC_ALL, "Russian");
 
@@ -29,6 +35,7 @@ int main() {
 	director.construct();
 	Product* xml = builder.getResult();
 
+	std::cout << "Полученный XML:\n";
 	std::cout << xml->toString() << "\n";
 	std::cout << "XML хеш верный?: " << (xml->checkHash() ? "Да" : "Нет") << "\n";
 

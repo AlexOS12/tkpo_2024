@@ -21,8 +21,8 @@ public:
 	std::string authors;              // Авторы
 	std::string content;              // Содержание
 	std::string hash;                 // Хеш-код статьи
-	unsigned long originalHash = 0;   // Хеш, полученный из файла
-	unsigned long calculatedHash = 0; // Хеш, полученный из строителя
+	unsigned long long originalHash = 0;   // Хеш, полученный из файла
+	unsigned long long calculatedHash = 0; // Хеш, полученный из строителя
 
 	XML() {};
 
@@ -86,10 +86,9 @@ public:
 		for (int i = 0; i < lines.size() - 1; i++)
 			fileContent += lines[i];
 
-		unsigned int calculatedHash = hasher(fileContent);
-		std::cout << calculatedHash << "\n\n";
+		unsigned long long calculatedHash = hasher(fileContent);
 		product->hash = "<HASH>" + lines[lines.size() - 1] + "</HASH>";
-		product->originalHash = atol(lines[lines.size() - 1].c_str());
+		product->originalHash = std::stoull(lines[lines.size() - 1]);
 		product->calculatedHash = calculatedHash;
 	};
 
@@ -125,4 +124,3 @@ public:
 		builder->buildHash();
 	}
 };
-
