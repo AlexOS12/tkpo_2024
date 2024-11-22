@@ -135,7 +135,6 @@ public:
 	}
 };
 
-
 // Абстрактная фабрика фильмов
 class AbstractMovieFactory {
 public:
@@ -163,6 +162,7 @@ public:
 		return movie;
 	}
 };
+
 // Фабрика фильмов на немецком
 class DeMovieFactory : public AbstractMovieFactory {
 public:
