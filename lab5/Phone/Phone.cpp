@@ -1,6 +1,6 @@
 #include "Phone.h"
 
-std::string IdleState::call(PhoneInterace* phone)
+std::string IdleState::call(Phone* phone)
 {
 	if (phone->balance > CALL_PRICE) {
 		phone->state = new CallState;
@@ -10,13 +10,13 @@ std::string IdleState::call(PhoneInterace* phone)
 	return "Недостаточно средств для звонка";
 }
 
-std::string IdleState::answerCall(PhoneInterace* phone)
+std::string IdleState::answerCall(Phone* phone)
 {
 	phone->state = new TalkState;
 	return "Отвечаем на звонок";
 }
 
-std::string IdleState::endCall(PhoneInterace* phone)
+std::string IdleState::endCall(Phone* phone)
 {
 	return "В текущий момент нет звонка, который можно было бы заврешить";
 }
@@ -26,17 +26,17 @@ std::string IdleState::toString()
 	return "Ожидание";
 }
 
-std::string CallState::call(PhoneInterace* phone)
+std::string CallState::call(Phone* phone)
 {
 	return "В настоящий момент звонок уже выполняется";
 }
 
-std::string CallState::answerCall(PhoneInterace* phone)
+std::string CallState::answerCall(Phone* phone)
 {
 	return "Нельзя ответить на звонок, во время выполнения звонка";
 }
 
-std::string CallState::endCall(PhoneInterace* phone)
+std::string CallState::endCall(Phone* phone)
 {
 	phone->state = new IdleState;
 	return "Звонок завершен";
@@ -47,17 +47,17 @@ std::string CallState::toString()
 	return "Выполняется звонок";
 }
 
-std::string TalkState::call(PhoneInterace* phone)
+std::string TalkState::call(Phone* phone)
 {
 	return "Нельзя начать новый звонок, поскольку Вы уже разговариваете";
 }
 
-std::string TalkState::answerCall(PhoneInterace* phone)
+std::string TalkState::answerCall(Phone* phone)
 {
 	return "Нельзя ответить на звонок, посколько Вы уже разговариваете";
 }
 
-std::string TalkState::endCall(PhoneInterace* phone)
+std::string TalkState::endCall(Phone* phone)
 {
 	phone->state = new IdleState;
 	return "Разговор был завершен";
@@ -68,17 +68,17 @@ std::string TalkState::toString()
 	return "Идет разговор";
 }
 
-std::string BlockState::call(PhoneInterace* phone)
+std::string BlockState::call(Phone* phone)
 {
 	return "Невозможно совершить звонок с отрицательным балансом";
 }
 
-std::string BlockState::answerCall(PhoneInterace* phone)
+std::string BlockState::answerCall(Phone* phone)
 {
 	return "Невозможно ответить на звонок с отрицательным балансом";
 }
 
-std::string BlockState::endCall(PhoneInterace* phone)
+std::string BlockState::endCall(Phone* phone)
 {
 	return "В текущий момент нет звонка, который можно было бы заврешить";
 }
@@ -88,7 +88,7 @@ std::string BlockState::toString()
 	return "Блокировка";
 }
 
-std::string BlockState::topupBalance(PhoneInterace* phone, int amount)
+std::string BlockState::topupBalance(Phone* phone, int amount)
 {
 	phone->balance += amount;
 	std::string res;
@@ -153,7 +153,7 @@ Phone::Phone(int number, int balance, double callChance)
 		state = new IdleState();
 }
 
-std::string State::topupBalance(PhoneInterace* phone, int amount)
+std::string State::topupBalance(Phone* phone, int amount)
 {
 	phone->balance += amount;
 	std::string res;
