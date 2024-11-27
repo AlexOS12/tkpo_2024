@@ -10,7 +10,7 @@ int main() {
 	target->modifyVolume(2);
 	std::cout << target->passport() << "\n";
 
-	std::cout << "Разница в давлении между 22°C и 30°C: " << target->getDp(22 + 273.15, 30 + 273.15) << " Па\n";
+	std::cout << "Разница в давлении между 22°C и 30°C: " << target->getDp(22 + 273, 30 + 273) << " Па\n";
 
 	return 0;
 }

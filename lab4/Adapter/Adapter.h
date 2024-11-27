@@ -23,7 +23,7 @@ public:
 	}
 
 	// Возвращает текущее давление в баллоне
-	double getPressure(double t) {
+	double getPressure(int t) {
 		// 8.314 - число R
 		double pressure = (amountOfMatter() * 8.314 * t) / volume;
 		return pressure;
@@ -52,7 +52,7 @@ public:
 	// Изменяет объем баллона на величину dV
 	virtual void modifyVolume(double dV) = 0 ;
 	// Определяет изменение давления при изменении температуры
-	virtual double getDp(double t0, double t1) = 0;
+	virtual double getDp(int t0, int t1) = 0;
 	// Получить сведения о баллоне
 	virtual std::string passport() = 0;
 };
@@ -70,7 +70,7 @@ public:
 		this->volume += dV;
 	}
 
-	double getDp(double t0, double t1) override {
+	double getDp(int t0, int t1) override {
 		double pressureT0 = getPressure(t0);
 		double pressureT1 = getPressure(t1);
 		return pressureT1 - pressureT0;
