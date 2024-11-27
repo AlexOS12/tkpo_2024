@@ -16,3 +16,36 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_convertBtn_clicked()
+{
+    std::string text = ui->inFileText->toPlainText().toStdString();
+    Builder* builder;
+
+    qDebug() << ui->outFileFormatBox->currentIndex();
+
+    switch (ui->outFileFormatBox->currentIndex()) {
+    case 0:
+        builder = new XMLBuilder(text);
+        break;
+    case 1:
+        builder = new HTMLBuilder(text);
+        break;
+    case 2:
+        builder = new JSONBuilder(text);
+        break;
+    default:
+        ui->outFileText->setPlainText("No such type");
+        return;
+    }
+
+    Director* director = new Director(builder);
+
+    director->construct();
+
+    Product* converted = builder->getResult();
+
+    ui->outFileText->setPlainText(QString::fromStdString(converted->toString()));
+
+}
+

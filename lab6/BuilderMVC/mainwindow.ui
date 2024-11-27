@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1489</width>
-    <height>948</height>
+    <height>985</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,9 +54,16 @@
          </spacer>
         </item>
         <item>
-         <widget class="QTextEdit" name="inFIleText">
+         <widget class="QPlainTextEdit" name="inFileText">
           <property name="placeholderText">
            <string>Здесь будет входной файл</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="convertBtn">
+          <property name="text">
+           <string>Конвертировать</string>
           </property>
          </widget>
         </item>
@@ -103,6 +110,13 @@
           </property>
           <property name="placeholderText">
            <string>Здесь будет выходной файл</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveOutBtn">
+          <property name="text">
+           <string>Сохранить</string>
           </property>
          </widget>
         </item>
