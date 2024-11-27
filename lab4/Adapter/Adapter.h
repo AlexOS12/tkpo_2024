@@ -7,7 +7,7 @@ class GasCylinder {
 protected:
 	double volume; // объем баллона в м^3
 	double mass;   // масса газа в кг
-	double molar;  // молярная масса газа в кг/ммоль
+	double molar;  // молярная масса газа в кг/моль
 
 public:
 	GasCylinder() {
@@ -23,15 +23,15 @@ public:
 	}
 
 	// Возвращает текущее давление в баллоне
-	double getPressure(int t) {
-		// 8.31 - число R
-		double pressure = (amountOfMatter() * 8.31 * t) / volume;
+	double getPressure(double t) {
+		// 8.314 - число R
+		double pressure = (amountOfMatter() * 8.314 * t) / volume;
 		return pressure;
 	};
 
 	// Возвращает кол-во вещества в баллоне
 	double amountOfMatter() {
-		double amount = (mass * 1'000) / molar;
+		double amount = mass / molar;
 		return amount;
 	};
 
@@ -40,7 +40,7 @@ public:
 		std::string data = "Сведения о газе, содержащемся в баллоне:\n";
 		data += "Объем баллона: " + std::to_string(volume) + " м^3\n";
 		data += "Масса газа: " + std::to_string(mass) + " кг\n";
-		data += "Молярная масса газа: " + std::to_string(molar) + " г/моль\n";
+		data += "Молярная масса газа: " + std::to_string(molar) + " кг/моль\n";
 		data += "Количество газа: " + std::to_string(amountOfMatter()) + " моль\n";
 		return data;
 	};
@@ -52,7 +52,7 @@ public:
 	// Изменяет объем баллона на величину dV
 	virtual void modifyVolume(double dV) = 0 ;
 	// Определяет изменение давления при изменении температуры
-	virtual double getDp(int t0, int t1) = 0;
+	virtual double getDp(double t0, double t1) = 0;
 	// Получить сведения о баллоне
 	virtual std::string passport() = 0;
 };
@@ -70,7 +70,7 @@ public:
 		this->volume += dV;
 	}
 
-	double getDp(int t0, int t1) override {
+	double getDp(double t0, double t1) override {
 		double pressureT0 = getPressure(t0);
 		double pressureT1 = getPressure(t1);
 		return pressureT1 - pressureT0;
