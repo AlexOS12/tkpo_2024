@@ -12,11 +12,12 @@ std::string IdleState::call(Phone* phone)
 
 std::string IdleState::answerCall(Phone* phone)
 {
-	phone->state = new TalkState;
-	if (rand() % 100 < phone->callChance)
+	if (rand() % 100 < phone->callChance) {
+		phone->state = new TalkState;
 		return "Отвечаем на звонок";
+	}
 	else
-		return "Нет входящего звока";
+		return "Нет входящего звонка";
 }
 
 std::string IdleState::endCall(Phone* phone)
@@ -141,7 +142,7 @@ Phone::Phone()
 {
 	number = rand() % 1'000;
 	balance = 100;
-	callChance = 0.5;
+	callChance = 50;
 	state = new IdleState();
 }
 
