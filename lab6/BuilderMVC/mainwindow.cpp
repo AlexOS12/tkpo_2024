@@ -45,6 +45,12 @@ void MainWindow::on_convertBtn_clicked()
 
     Product* converted = builder->getResult();
 
+    if (converted->checkHash())
+        ui->hashStatusLabel->setText("Хеш верен");
+    else
+        ui->hashStatusLabel->setText("Хен неверен!");
+
+
     ui->outFileText->setPlainText(QString::fromStdString(converted->toString()));
 
 }
