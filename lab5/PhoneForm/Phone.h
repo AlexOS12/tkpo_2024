@@ -41,7 +41,7 @@ class Phone {
 private:
 	int number;        // Номер телефона
 	int balance;       // Баланс
-	double callChance; // Вероятность поступления звонка
+	int callChance;    // Вероятность поступления звонка
 	State* state;      // Состояние телефона
 
 public:
@@ -52,7 +52,7 @@ public:
 	std::string toString();
 
 	Phone();
-	Phone(int number, int balance, double callChance);
+	Phone(int number, int balance, int callChance);
 };
 
 
