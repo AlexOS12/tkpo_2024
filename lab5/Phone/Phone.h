@@ -5,31 +5,6 @@
 
 class State;
 
-//// Интерфейс телефона
-//class PhoneInterace
-//{
-//	friend class State;
-//	friend class IdleState;
-//	friend class CallState;
-//	friend class TalkState;
-//	friend class BlockState;
-//
-//protected:
-//	int number;        // Номер телефона
-//	int balance;       // Баланс
-//	double callChance; // Вероятность поступления звонка
-//	State* state;      // Состояние телефона
-//
-//public:
-//	virtual std::string call() = 0;
-//	virtual std::string answerCall() = 0;
-//	virtual std::string endCall() = 0;
-//	virtual std::string topupBalance(int amount) = 0;
-//	virtual std::string toString() = 0;
-//
-//	PhoneInterace() {};
-//};
-
 // Телефон
 class Phone {
 	friend class State;
@@ -41,7 +16,7 @@ class Phone {
 private:
 	int number;        // Номер телефона
 	int balance;       // Баланс
-	double callChance; // Вероятность поступления звонка
+	int callChance;    // Вероятность поступления звонка в процентах
 	State* state;      // Состояние телефона
 
 public:
