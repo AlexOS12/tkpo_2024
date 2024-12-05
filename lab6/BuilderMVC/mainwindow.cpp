@@ -45,13 +45,17 @@ void MainWindow::on_convertBtn_clicked()
         ui->outFileText->setPlainText("No such type");
         return;
     }
-}
+    Director* director = new Director(builder);
 
-void MainWindow::update() {
-    ui->outFileText->setPlainText(QString::fromStdString(model->getContent()));
-    if (model->chechHash()) {
-        ui->hashStatusLabel->setText("Хэш верен");
-    } else {
-        ui->hashStatusLabel->setText("Хэш неверен");
-    }
-}
+    director->construct();
+
+    Product* converted = builder->getResult();
+
+    if (converted->checkHash())
+        ui->hashStatusLabel->setText("Хеш верен");
+    else
+        ui->hashStatusLabel->setText("Хен неверен!");
+
+
+    ui->outFileText->setPlainText(QString::fromStdString(converted->toString()));
+

@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <cstdlib>
+#include <iostream>
 
 // Базовый класс продукта
 class Product {
@@ -70,6 +71,9 @@ public:
         result += hash + "\n";
         result += "</body>\n";
         result += "</html>\n";
+
+        result += "original hash:" + std::to_string(originalHash) + "\n";
+        result += "original hash:" + std::to_string(calculatedHash);
         return result;
     }
 
@@ -201,8 +205,11 @@ public:
         std::hash<std::string> hasher;
         std::string fileContent;
 
+
         for (int i = 0; i < lines.size() - 1; i++)
             fileContent += lines[i];
+
+        qDebug() << fileContent << "\n\n";
 
         unsigned long long calculatedHash = hasher(fileContent);
         product->hash = "<i> Hashum:" + lines[lines.size() - 1] + "</i>";
@@ -216,6 +223,7 @@ public:
 
     HTMLBuilder(std::string source) {
         product = new HTML();
+        qDebug() << source << "\n";
         std::stringstream ss(source);
         std::string line;
         while (std::getline(ss, line)) {
