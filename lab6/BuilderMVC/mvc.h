@@ -41,7 +41,6 @@ public:
 
 class Controller {
 private:
-    Product* product;
     Model* model;
 
 public:
