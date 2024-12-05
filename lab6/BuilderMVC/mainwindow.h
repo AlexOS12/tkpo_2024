@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include <QString>
-#include "Builder.h"
+#include "mvc.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -11,11 +12,14 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public Observer
 {
     Q_OBJECT
 public:
+    void update() override;
+
     MainWindow(QWidget *parent = nullptr);
+    MainWindow(Controller* controller, Model* model, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -23,5 +27,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Controller* controller;
+    Model* model;
 };
+
 #endif // MAINWINDOW_H
