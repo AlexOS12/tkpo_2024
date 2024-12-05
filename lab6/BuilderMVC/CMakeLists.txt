@@ -24,6 +24,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         Builder.h
+        mvc.h mvc.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET BuilderMVC APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
