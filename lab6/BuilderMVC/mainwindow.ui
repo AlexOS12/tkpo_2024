@@ -20,20 +20,50 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLineEdit" name="inFileEdit">
+            <property name="placeholderText">
+             <string>Укажите путь к входному файлу</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="inFileBtn">
+            <property name="text">
+             <string>Обзор</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QLabel" name="hashStatusLabel">
           <property name="text">
-           <string>Чтобы проверить хэш статьи - нажмите кнопку &quot;Конвертировать&quot;</string>
-
+           <string>TextLabel</string>
           </property>
          </widget>
         </item>
         <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>3</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QPlainTextEdit" name="inFileText">
           <property name="placeholderText">
-           <string>Введите сюда исходный текст</string>
+           <string>Здесь будет входной файл</string>
           </property>
          </widget>
         </item>
@@ -56,7 +86,22 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLineEdit" name="outFileEdit">
+            <property name="placeholderText">
+             <string>Укажите путь к выходному файлу</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="outFIleBtn">
+            <property name="text">
+             <string>Обзор</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QComboBox" name="outFileFormatBox">
@@ -71,7 +116,14 @@
            <bool>true</bool>
           </property>
           <property name="placeholderText">
-           <string>Здесь Вы увидите результат конвертации</string>
+           <string>Здесь будет выходной файл</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveOutBtn">
+          <property name="text">
+           <string>Сохранить</string>
           </property>
          </widget>
         </item>

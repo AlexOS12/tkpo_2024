@@ -6,28 +6,28 @@
 #include <cstdlib>
 #include <iostream>
 
-// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РїСЂРѕРґСѓРєС‚Р°
+// Базовый класс продукта
 class Product {
 public:
 	Product() {};
-	// РњРµС‚РѕРґС‹ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ СЃС‚СЂРѕРєСѓ
+	// Методы преобразования продукта в строку
     virtual std::string toString() = 0;
 	virtual bool checkHash() = 0;
 };
 
-// РљР»Р°СЃСЃ XML
+// Класс XML
 class XML : public Product {
 public:
-    std::string title;                // Р—Р°РіРѕР»РѕРІРѕРє
-    std::string authors;              // РђРІС‚РѕСЂС‹
-    std::string content;              // РЎРѕРґРµСЂР¶Р°РЅРёРµ
-    std::string hash;                 // РҐРµС€-РєРѕРґ СЃС‚Р°С‚СЊРё
-	unsigned long long originalHash = 0;   // РҐРµС€, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· С„Р°Р№Р»Р°
-	unsigned long long calculatedHash = 0; // РҐРµС€, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· СЃС‚СЂРѕРёС‚РµР»СЏ
+    std::string title;                // Заголовок
+    std::string authors;              // Авторы
+    std::string content;              // Содержание
+    std::string hash;                 // Хеш-код статьи
+	unsigned long long originalHash = 0;   // Хеш, полученный из файла
+	unsigned long long calculatedHash = 0; // Хеш, полученный из строителя
 
 	XML() {};
 
-	// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ XML РІ СЃС‚СЂРѕРєСѓ
+	// Преобразование XML в строку
     std::string toString() override {
         std::string result;
 		result += "<?xml version=\"1.0\"?>\n";
@@ -46,19 +46,19 @@ public:
 	}
 };
 
-// РљР»Р°СЃСЃ HTML
+// Класс HTML
 class HTML : public Product {
 public:
-    std::string title;                // Р—Р°РіРѕР»РѕРІРѕРє
-    std::string authors;              // РђРІС‚РѕСЂС‹
-    std::string content;              // РЎРѕРґРµСЂР¶Р°РЅРёРµ
-    std::string hash;                 // РҐРµС€-РєРѕРґ СЃС‚Р°С‚СЊРё
-    unsigned long long originalHash = 0;   // РҐРµС€, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· С„Р°Р№Р»Р°
-    unsigned long long calculatedHash = 0; // РҐРµС€, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· СЃС‚СЂРѕРёС‚РµР»СЏ
+    std::string title;                // Заголовок
+    std::string authors;              // Авторы
+    std::string content;              // Содержание
+    std::string hash;                 // Хеш-код статьи
+    unsigned long long originalHash = 0;   // Хеш, полученный из файла
+    unsigned long long calculatedHash = 0; // Хеш, полученный из строителя
 
     HTML() {};
 
-    // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ HTML РІ СЃС‚СЂРѕРєСѓ
+    // Преобразование HTML в строку
     std::string toString() override {
         std::string result;
         result += "<!DOCTYPE html>\n";
@@ -82,19 +82,19 @@ public:
     }
 };
 
-// РљР»Р°СЃСЃ JSON
+// Класс JSON
 class JSON : public Product {
 public:
-    std::string title;                // Р—Р°РіРѕР»РѕРІРѕРє
-    std::string authors;              // РђРІС‚РѕСЂС‹
-    std::string content;              // РЎРѕРґРµСЂР¶Р°РЅРёРµ
-    std::string hash;                 // РҐРµС€-РєРѕРґ СЃС‚Р°С‚СЊРё
-    unsigned long long originalHash = 0;   // РҐРµС€, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· С„Р°Р№Р»Р°
-    unsigned long long calculatedHash = 0; // РҐРµС€, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· СЃС‚СЂРѕРёС‚РµР»СЏ
+    std::string title;                // Заголовок
+    std::string authors;              // Авторы
+    std::string content;              // Содержание
+    std::string hash;                 // Хеш-код статьи
+    unsigned long long originalHash = 0;   // Хеш, полученный из файла
+    unsigned long long calculatedHash = 0; // Хеш, полученный из строителя
 
     JSON() {};
 
-    // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ HTML РІ СЃС‚СЂРѕРєСѓ
+    // Преобразование HTML в строку
     std::string toString() override {
         std::string result;
 
@@ -116,7 +116,7 @@ public:
 };
 
 
-// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ СЃС‚СЂРѕРёС‚РµР»СЏ
+// Базовый класс строителя
 class Builder {
 public:
 	Builder() {};
@@ -128,9 +128,9 @@ public:
 	virtual Product* getResult() = 0;
 };
 
-// РљР»Р°СЃСЃ СЃС‚СЂРѕРёС‚РµР»СЏ XML
+// Класс строителя XML
 class XMLBuilder : public Builder {
-	// РСЃС…РѕРґРЅС‹Р№ С‚РµРєСЃС‚, РёР· РєРѕС‚РѕСЂРѕРіРѕ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ XML
+	// Исходный текст, из которого формируется XML
 protected:
     std::vector<std::string> lines;
 	XML* product;
@@ -178,9 +178,9 @@ public:
     }
 };
 
-// РљР»Р°СЃСЃ СЃС‚СЂРѕРёС‚РµР»СЏ HTML
+// Класс строителя HTML
 class HTMLBuilder : public Builder {
-    // РСЃС…РѕРґРЅС‹Р№ С‚РµРєСЃС‚, РёР· РєРѕС‚РѕСЂРѕРіРѕ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ XML
+    // Исходный текст, из которого формируется XML
 protected:
     std::vector<std::string> lines;
     HTML* product;
@@ -233,9 +233,9 @@ public:
     }
 };
 
-// РљР»Р°СЃСЃ СЃС‚СЂРѕРёС‚РµР»СЏ JSON
+// Класс строителя JSON
 class JSONBuilder : public Builder {
-    // РСЃС…РѕРґРЅС‹Р№ С‚РµРєСЃС‚, РёР· РєРѕС‚РѕСЂРѕРіРѕ С„РѕСЂРјРёСЂСѓРµС‚СЃСЏ XML
+    // Исходный текст, из которого формируется XML
 protected:
     std::vector<std::string> lines;
     JSON* product;
@@ -284,7 +284,7 @@ public:
     }
 };
 
-// РљР»Р°СЃСЃ РґРёСЂРµРєС‚РѕСЂР°
+// Класс директора
 class Director {
 protected:
 	Builder* builder;
