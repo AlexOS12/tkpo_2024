@@ -12,6 +12,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->outFileFormatBox->addItem("JSON");
 }
 
+MainWindow::MainWindow(Controller *controller, Model *model, QWidget *parent)
+    : MainWindow(parent)
+{
+    this->model = model;
+    this->controller = controller;
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -26,32 +33,25 @@ void MainWindow::on_convertBtn_clicked()
 
     switch (ui->outFileFormatBox->currentIndex()) {
     case 0:
-        builder = new XMLBuilder(text);
+        controller->CreateXML(text);
         break;
     case 1:
-        builder = new HTMLBuilder(text);
+        controller->CreateHTML(text);
         break;
     case 2:
-        builder = new JSONBuilder(text);
+        controller->CreateJSON(text);
         break;
     default:
         ui->outFileText->setPlainText("No such type");
         return;
     }
-
-    Director* director = new Director(builder);
-
-    director->construct();
-
-    Product* converted = builder->getResult();
-
-    if (converted->checkHash())
-        ui->hashStatusLabel->setText("Хеш верен");
-    else
-        ui->hashStatusLabel->setText("Хен неверен!");
-
-
-    ui->outFileText->setPlainText(QString::fromStdString(converted->toString()));
-
 }
 
+void MainWindow::update() {
+    ui->outFileText->setPlainText(QString::fromStdString(model->getContent()));
+    if (model->chechHash()) {
+        ui->hashStatusLabel->setText("Хэш верен");
+    } else {
+        ui->hashStatusLabel->setText("Хэш неверен");
+    }
+}
